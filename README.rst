@@ -14,7 +14,7 @@ Cookiecutter FastAPI Package
     :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-Cookiecutter_ template for a FastAPI package out of a fork of audreyfeldroy-cookiecutter-pypackage_.
+Cookiecutter_ template for a FastAPI package, a fork of audreyfeldroy-cookiecutter-pypackage_.
 
 * GitHub repo: https://github.com/audreyfeldroy/cookiecutter-pypackage/
 * Documentation: https://cookiecutter-pypackage.readthedocs.io/
