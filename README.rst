@@ -1,6 +1,6 @@
-======================
-Cookiecutter PyPackage
-======================
+============================
+Cookiecutter FastAPI Package
+============================
 
 .. image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
     :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
@@ -14,7 +14,7 @@ Cookiecutter PyPackage
     :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-Cookiecutter_ template for a Python package.
+Cookiecutter_ template for a FastAPI package and a fork of audreyfeldroy-cookiecutter-pypackage_.
 
 * GitHub repo: https://github.com/audreyfeldroy/cookiecutter-pypackage/
 * Documentation: https://cookiecutter-pypackage.readthedocs.io/
@@ -33,6 +33,7 @@ Features
 * Command line interface using Click (optional)
 
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
+.. _audreyfeldroy-cookiecutter-pypackage: https://github.com/audreyfeldroy/cookiecutter-pypackage.git
 
 Build Status
 -------------
@@ -59,7 +60,7 @@ Cookiecutter 1.4.0 or higher)::
 
 Generate a Python package project::
 
-    cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage.git
+    cookiecutter https://github.com/FernLab/cookiecutter-fastapi-package.git
 
 Then:
 
