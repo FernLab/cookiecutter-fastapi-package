@@ -32,7 +32,7 @@ jobs:
           python -m pip install --user --upgrade build
           python -m build
       - name: Archive package
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: cookie-cutter
           path: dist
