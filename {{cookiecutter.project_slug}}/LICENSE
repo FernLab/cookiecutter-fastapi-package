@@ -316,7 +316,7 @@ Code from exclusive appropriation.
 
 All other changes or additions to this Appendix require the production of a new
 EUPL version.
-{% elif cookiecutter.open_source_license == 'BSD' %}
+{% elif cookiecutter.open_source_license == 'BSD-3-Clause' %}
 BSD License
 
 Copyright (c) {% now 'local', '%Y' %}, {{ cookiecutter.full_name }}

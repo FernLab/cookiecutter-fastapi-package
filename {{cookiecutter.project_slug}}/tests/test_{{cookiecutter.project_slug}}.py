@@ -15,9 +15,13 @@ import unittest
 
 import {{ cookiecutter.project_slug }}
 {%- if cookiecutter.use_pytest == 'y' %}
+import os
+from fastapi.testclient import TestClient
 
+from {{ cookiecutter.project_slug }}.create_app import app
+import {{ cookiecutter.project_slug }}.core.env as environment
 
-SERVICE_NAMESPACE = config['test']['service_namespace']
+SERVICE_NAMESPACE = environment.SERVICE_NAMESPACE
 
 
 class Test{{ cookiecutter.project_slug|title }}():

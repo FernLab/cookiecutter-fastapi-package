@@ -16,7 +16,7 @@ name = "{{cookiecutter.project_slug}}"
 dynamic = ["version"]
 description = "{{cookiecutter.project_short_description}}"
 authors = [
-  {name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}"}
+  {name = """ {{cookiecutter.full_name}} """, email = "{{cookiecutter.email}}"}
 ]
 license = {text = "{{cookiecutter.open_source_license}}"}
 classifiers = [
@@ -43,7 +43,7 @@ file = "README.rst"
 content-type = "text/x-rst"
 
 maintainers = [
-  {name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}"}
+  {name = """ {{cookiecutter.full_name}} """, email = "{{cookiecutter.email}}"}
 ]
 
 [project.optional-dependencies]
