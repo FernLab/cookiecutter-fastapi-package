@@ -51,19 +51,16 @@ doc = [
     'sphinx>=4.1.1',
     'sphinx-argparse',
     'sphinx-autodoc-typehints',
-    'sphinxcontrib-httpdomain',
-    'sphinxcontrib-openapi',
-    'sphinxcontrib-serializinghtml',
-    'sphinxcontrib-websupport',
     'sphinx_rtd_theme',
+    'sphinxcontrib-openapi',
+    'sphinxcontrib-websupport',
     "numpydoc>=1.7"
 ]
 test = [
     "pytest>=3",
     "pytest-cov",
     "pytest-reporter-html1",
-    "urlchecker",
-    "gevent"
+    "urlchecker"
 ]
 lint = [
     "pre-commit"
