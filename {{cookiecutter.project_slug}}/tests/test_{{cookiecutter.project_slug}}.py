@@ -8,10 +8,15 @@
 """Tests for `{{ cookiecutter.project_slug }}` package."""
 
 {% if cookiecutter.use_pytest == 'y' -%}
-from fastapi.testclient import TestClient
+import pytest
 {% else -%}
 import unittest
 {%- endif %}
+
+import {{ cookiecutter.project_slug }}
+{%- if cookiecutter.use_pytest == 'y' %}
+
+from fastapi.testclient import TestClient
 
 from {{ cookiecutter.project_slug }}.create_app import app
 
