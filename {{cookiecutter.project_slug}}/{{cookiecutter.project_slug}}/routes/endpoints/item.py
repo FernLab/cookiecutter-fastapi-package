@@ -7,8 +7,8 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-import {{cookiecutter.project_slug}}.schemas.general as general_schema
-import {{cookiecutter.project_slug}}.schemas.item as item_schema
+import {{ cookiecutter.project_slug }}.schemas.general as general_schema
+import {{ cookiecutter.project_slug }}.schemas.item as item_schema
 
 router = APIRouter()
 
