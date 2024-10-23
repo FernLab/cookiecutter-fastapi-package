@@ -50,8 +50,8 @@ test_styles:
     - source activate ci_env
     # install missing dependencies in the CI container
     - mamba env update --name ci_env --file tests/CI_docker/context/environment_{{ cookiecutter.project_slug }}.yml  --prune
-    # run pre-commit and save output to file while not blocking a commit if it fails 
-    - make lint 
+    # run pre-commit and save output to file while not blocking a commit if it fails
+    - make lint
   artifacts:
     paths:
       - tests/linting/pre-commit-output.txt
