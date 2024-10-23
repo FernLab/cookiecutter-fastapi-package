@@ -33,8 +33,15 @@ keywords = [
     "remote sensing"
 ]
 dependencies = [
+    "fastapi",
+    "httpx",
+    "uvicorn",
+    "geopandas",
+    "numpy",
+    "rasterio",
+    "shapely"
   {% if cookiecutter.command_line_interface.lower() == "typer" -%}
-  "typer"
+    "typer"
 {%- endif %}
 ]
 
@@ -48,14 +55,12 @@ maintainers = [
 
 [project.optional-dependencies]
 doc = [
-    'sphinx>=4.1.1',
-    'sphinx-argparse',
-    'sphinx-autodoc-typehints',
-    'sphinxcontrib-httpdomain',
-    'sphinxcontrib-openapi',
-    'sphinxcontrib-serializinghtml',
-    'sphinxcontrib-websupport',
-    'sphinx_rtd_theme',
+    "sphinx>=4.1.1",
+    "sphinx-argparse",
+    "sphinx-autodoc-typehints",
+    "sphinx_rtd_theme",
+    "sphinxcontrib-openapi",
+    "sphinxcontrib-websupport",
     "numpydoc>=1.7"
 ]
 test = [
