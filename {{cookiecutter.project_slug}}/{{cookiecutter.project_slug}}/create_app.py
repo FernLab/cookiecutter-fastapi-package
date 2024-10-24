@@ -29,9 +29,9 @@ OPENAPI_URL = f"/{APP_DOC_NAME}.json"
 
 if environment.SERVICE_NAMESPACE:
     service_namespace = environment.SERVICE_NAMESPACE
-    DOCS_URL = f'/{service_namespace}/docs'
-    REDOCS_URL = f'/{service_namespace}/redoc'
-    OPENAPI_URL = f'/{service_namespace}/{APP_DOC_NAME}.json'
+    DOCS_URL = f"/{service_namespace}/docs"
+    REDOCS_URL = f"/{service_namespace}/redoc"
+    OPENAPI_URL = f"/{service_namespace}/{APP_DOC_NAME}.json"
 
 fastapi_app = FastAPI(
     title=APP_NAME,
@@ -49,7 +49,8 @@ fastapi_app = FastAPI(
     },
     docs_url=DOCS_URL,
     redoc_url=REDOCS_URL,
-    openapi_url=OPENAPI_URL)
+    openapi_url=OPENAPI_URL,
+)
 
 fastapi_app.include_router(api_router)
 
