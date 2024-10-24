@@ -21,7 +21,7 @@ from fastapi.testclient import TestClient
 from {{ cookiecutter.project_slug }}.create_app import app
 
 
-class TestFastapi_boilerplate():
+class Test{{ cookiecutter.project_slug|title }}():
 
     @classmethod
     def setup_class(cls):
