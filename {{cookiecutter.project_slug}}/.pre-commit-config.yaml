@@ -15,7 +15,7 @@ repos:
         args: [--branch, main]  # Prevents commits directly to the main branch
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.9  
+    rev: v0.6.9
     hooks:
       - id: ruff
         name: "Ruff - Lint and Style"
@@ -46,9 +46,9 @@ repos:
     hooks:
       - id: bandit
         args: ["--skip=B101"]  # Example: skip hardcoded password check
-  
+
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v1.12.0'   
+    rev: 'v1.12.0'
     hooks:
       - id: mypy
         args:
@@ -56,4 +56,3 @@ repos:
           - --show-error-codes        # Show error codes with type violations
           - --warn-unused-ignores     # Warn if `# type: ignore` comments are unnecessary
         files: '^{{ cookiecutter.project_slug }}/'
-  

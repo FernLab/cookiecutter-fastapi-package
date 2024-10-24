@@ -99,8 +99,9 @@ exclude = [
     "tests*",
 ]
 namespaces = false
-
 {% if cookiecutter.command_line_interface == 'Yes' %}
+
 [project.scripts]
 {{cookiecutter.slug}} = "{{cookiecutter.project_slug}}.{{cookiecutter.project_slug}}_cli:main"
+
 {% endif %}
