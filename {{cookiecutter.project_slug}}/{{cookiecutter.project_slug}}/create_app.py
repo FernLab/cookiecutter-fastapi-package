@@ -5,9 +5,10 @@
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-from {{ cookiecutter.project_slug }}.core.config_parser import config
 from {{ cookiecutter.project_slug }}.core import env as environment
+from {{ cookiecutter.project_slug }}.core.config_parser import config
 from {{ cookiecutter.project_slug }}.routes.api import api_router
 
 APP_NAME = config["meta"]["app_name"]
@@ -26,6 +27,9 @@ LICENSE_NAME = config["license"]["name"]
 DOCS_URL = "/docs"
 REDOCS_URL = "/redoc"
 OPENAPI_URL = f"/{APP_DOC_NAME}.json"
+
+ROOT_PATH = environment.ROOT_PATH
+ALLOWED_ORIGINS = environment.ALLOWED_ORIGINS
 
 if environment.SERVICE_NAMESPACE:
     service_namespace = environment.SERVICE_NAMESPACE
@@ -50,6 +54,15 @@ fastapi_app = FastAPI(
     docs_url=DOCS_URL,
     redoc_url=REDOCS_URL,
     openapi_url=OPENAPI_URL,
+    root_path=ROOT_PATH,
+)
+
+fastapi_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 fastapi_app.include_router(api_router)
