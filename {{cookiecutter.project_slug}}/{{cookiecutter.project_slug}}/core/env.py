@@ -11,6 +11,18 @@ import {{ cookiecutter.project_slug }}
 SERVICE_NAMESPACE = ""
 
 # --------------------------------------------------- #
+# --------------------- Settings -------------------- #
+
+HOST = os.environ.get("HOST", "0.0.0.0")
+PORT = os.environ.get("PORT", "8881")
+ROOT_PATH = os.environ["ROOT_PATH"] if "ROOT_PATH" in os.environ else ""
+ALLOWED_ORIGINS = (
+    os.environ["ALLOWED_ORIGINS"].split(",")
+    if "ALLOWED_ORIGINS" in os.environ and os.environ["ALLOWED_ORIGINS"]
+    else "*"
+)
+
+# --------------------------------------------------- #
 # ------------------- Directories ------------------- #
 ROOT_DIR = os.path.abspath(
     os.path.join(os.path.dirname({{ cookiecutter.project_slug }}.__file__), "..")
