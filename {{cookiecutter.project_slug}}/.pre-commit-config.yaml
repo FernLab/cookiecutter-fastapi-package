@@ -39,6 +39,7 @@ repos:
           - "-sn"  # Suppress message count
           - "--output-format=colorized"  # Colorize the output for easier readability
           - "--disable=missing-docstring"  # Disable missing docstring check
+          - "--disable=too-few-public-methods"  # Disable too few public methods check
         files: '^{{ cookiecutter.project_slug }}/'
 
   - repo: https://github.com/PyCQA/bandit
