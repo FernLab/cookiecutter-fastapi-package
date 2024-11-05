@@ -25,4 +25,3 @@ tests/linting/
 .gitlab-ci.yml
 Makefile
 MANIFEST.in
-pyproject.toml
