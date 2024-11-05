@@ -35,8 +35,6 @@ dependencies:
     - pre-commit
     # Python packages for fastapi
     - fastapi
-    - httpx
-    - uvicorn
     # Python packages for Geospatial tools
     - geopandas
     - numpy
