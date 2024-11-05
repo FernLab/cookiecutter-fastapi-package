@@ -14,10 +14,15 @@ RUN mamba env create -f /root/environment_{{ cookiecutter.project_slug }}.yml
 # Activate the environment
 SHELL ["conda", "run", "-n", "{{ cookiecutter.project_slug }}", "/bin/bash", "-c"]
 
-# Copy source code
-COPY . /{{ cookiecutter.project_slug }}
-RUN rm -rf /{{ cookiecutter.project_slug }}/tests
+# Install Package
+ADD . /{{ cookiecutter.project_slug }}/
+RUN pip install -e /{{ cookiecutter.project_slug }}/
 
-# Change directory to /{{ cookiecutter.project_slug }}
-ENV APP_HOME /{{ cookiecutter.project_slug }}/
-WORKDIR $APP_HOME
+# Change working directory to help fastapi to find package
+WORKDIR /{{ cookiecutter.project_slug }}
+
+# Run the application using FastAPI CLI
+CMD fastapi run {{ cookiecutter.project_slug }}/create_app.py --host 0.0.0.0 --port 8881
+
+# These are not working!!!
+# CMD ["fastapi", "run", "{{ cookiecutter.project_slug }}/create_app.py", "--host", "0.0.0.0", "--port", "8881"]
