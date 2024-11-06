@@ -22,7 +22,9 @@ ALLOWED_ORIGINS = (
 
 # --------------------------------------------------- #
 # ------------------- Directories ------------------- #
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname({{ cookiecutter.project_slug }}.__file__), ".."))
+ROOT_DIR = os.path.abspath(
+    os.path.join(os.path.dirname({{ cookiecutter.project_slug }}.__file__), "..")
+)
 
 # --------------------------------------------------- #
 # ---------------- Set Path for test ---------------- #

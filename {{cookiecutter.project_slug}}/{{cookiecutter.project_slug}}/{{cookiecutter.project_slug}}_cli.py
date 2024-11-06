@@ -41,7 +41,9 @@ def main():
     parsed_args = argparser.parse_args()
 
     print("Arguments: " + str(parsed_args._))
-    print("Replace this message by putting your code into {{cookiecutter.project_slug}}.{{cookiecutter.project_slug}}_cli")
+    print(
+        "Replace this message by putting your code into {{cookiecutter.project_slug}}.{{cookiecutter.project_slug}}_cli"
+    )
     return 0
 {%- endif %}
 
