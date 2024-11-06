@@ -29,13 +29,13 @@ class Test{{ cookiecutter.project_slug|title }}():
         cls.app = TestClient(app)
         cls.endpoint = 'test-service'
 
-    def teardown_class(cls):
+    def teardown_class(self):
         print("teardown_class called once for the class")
 
-    def setup_method(cls):
+    def setup_method(self):
         print("setup_method called for every method")
 
-    def teardown_method(cls):
+    def teardown_method(self):
         print("teardown_method called for every method")
 
     def test_api_home_200(self):
