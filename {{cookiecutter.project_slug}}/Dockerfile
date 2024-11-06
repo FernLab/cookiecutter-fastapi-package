@@ -1,6 +1,7 @@
-# # SPDX-License-Identifier: MIT
-# # FileType: SOURCE
-# # FileCopyrightText: 2024, FernLab at GFZ Potsdam
+#syntax=docker/dockerfile:experimental
+# SPDX-License-Identifier: {{ cookiecutter.open_source_license }}
+# FileType: SOURCE
+# FileCopyrightText: {% now 'utc', '%Y' %}, {{ cookiecutter.full_name }} at GFZ Potsdam
 
 
 # # Container for building the environment
