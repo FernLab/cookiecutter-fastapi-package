@@ -6,12 +6,12 @@
 """Unit test package for {{ cookiecutter.project_slug }}."""
 
 import os
-from dotenv import load_dotenv
 
-from {{cookiecutter.project_slug}}.core.config_parser import config
+import {{ cookiecutter.project_slug }}
 
-# Load environments from .env file once we run the test functions.
-load_dotenv()
+ROOT_DIR = \
+    os.path.abspath(os.path.join(
+        os.path.dirname({{ cookiecutter.project_slug }}.__file__), ".."))
 
-os.environ['service_namespace'] = config['test']['service_namespace']
-os.environ['DATA_DIR'] = os.getcwd()
+os.environ['service_namespace'] = 'test-service'
+

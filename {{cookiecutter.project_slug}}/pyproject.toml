@@ -40,8 +40,6 @@ keywords = [
 ]
 dependencies = [
     "fastapi",
-    "httpx",
-    "uvicorn",
     "geopandas",
     "numpy",
     "rasterio",

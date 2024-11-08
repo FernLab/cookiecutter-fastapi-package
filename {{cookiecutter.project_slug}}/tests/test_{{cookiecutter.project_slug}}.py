@@ -9,26 +9,18 @@
 
 import pytest
 import {{ cookiecutter.project_slug }}
-import os
 from fastapi.testclient import TestClient
 
 from {{ cookiecutter.project_slug }}.create_app import app
-import {{ cookiecutter.project_slug }}.core.env as environment
-
-SERVICE_NAMESPACE = environment.SERVICE_NAMESPACE
 
 
 class Test{{ cookiecutter.project_slug|title }}():
 
     @classmethod
-    def setup_class(self):
+    def setup_class(cls):
         """Set up test fixtures."""
-        self.app = TestClient(app)
-        self.endpoint_prefix = ''
-
-        if 'service_namespace' in os.environ and \
-                os.environ['service_namespace'] == SERVICE_NAMESPACE:
-            self.endpoint_prefix = f'{SERVICE_NAMESPACE}'
+        cls.app = TestClient(app)
+        cls.endpoint = 'test-service'
 
     def teardown_class(self):
         print("teardown_class called once for the class")
@@ -40,31 +32,31 @@ class Test{{ cookiecutter.project_slug|title }}():
         print("teardown_method called for every method")
 
     def test_api_home_200(self):
-        response = self.app.get(f"{self.endpoint_prefix}/")
+        response = self.app.get(f"{self.endpoint}/")
         assert response.status_code == 200
 
     def test_api_home_404_url_not_found(self):
-        response = self.app.get(f"{self.endpoint_prefix}/NotFound")
+        response = self.app.get(f"{self.endpoint}/NotFound")
         assert response.status_code == 404
 
     def test_api_items_200(self):
-        response = self.app.get(f"{self.endpoint_prefix}/item")
+        response = self.app.get(f"{self.endpoint}/item")
         assert response.status_code == 200
 
     def test_api_items_404_url_not_found(self):
-        response = self.app.get(f"{self.endpoint_prefix}/item_NotFound")
+        response = self.app.get(f"{self.endpoint}/item_NotFound")
         assert response.status_code == 404
 
     def test_api_item_by_id_200(self):
-        response = self.app.get(f"{self.endpoint_prefix}/item/1")
+        response = self.app.get(f"{self.endpoint}/item/1")
         assert response.status_code == 200
 
     def test_api_item_by_id_404_not_found(self):
-        response = self.app.get(f"{self.endpoint_prefix}/item/5")
+        response = self.app.get(f"{self.endpoint}/item/5")
         assert response.status_code == 404
 
     def test_api_item_by_id_404_url_not_found(self):
-        response = self.app.get(f"{self.endpoint_prefix}/item_NotFound/5")
+        response = self.app.get(f"{self.endpoint}/item_NotFound/5")
         assert response.status_code == 404
 
 

@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.coveragerc
+.coverage.*
+.cache
+nosetests.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+report.xml
+report.html
+
+# Other files and folder
+bin/
+docs/
+tests/test_data/
+tests/linting/
+.editorconfig
+.gitignore
+.gitlab-ci.yml
+Makefile
+MANIFEST.in
