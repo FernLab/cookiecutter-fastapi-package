@@ -76,9 +76,8 @@ lint: ## check for style issues
 	{%- endif %}
 
 urlcheck: ## check for dead URLs
-	urlchecker check . --file-types .py,.rst,.md,.json
-	--exclude-urls \
-            http://localhost:3000
+	urlchecker check . --file-types .py,.rst,.md,.json \
+	--exclude-urls http://localhost:3000
 
 test: ## run tests quickly with the default Python
 	pytest
