@@ -15,6 +15,7 @@ dependencies:
   - pytest
   - pytest-cov
   - urlchecker
+  - gevent
   # lint requirements
   {%- if cookiecutter.use_precommit == 'y' %}
   - pre-commit
