@@ -23,8 +23,14 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering",
-    # "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
-    "Natural Language :: English",
+    {% if cookiecutter.open_source_license == 'MIT' -%}"License :: OSI Approved :: MIT License",
+    {% elif cookiecutter.open_source_license == 'EUPL-1.2' %}"License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
+    {% elif cookiecutter.open_source_license == 'BSD-3-Clause' %}"License :: OSI Approved :: BSD License",
+    {% elif cookiecutter.open_source_license == 'ISC' -%}"License :: OSI Approved :: ISC License (ISCL)",
+    {% elif cookiecutter.open_source_license == 'Apache-2.0' -%}"License :: OSI Approved :: Apache Software License",
+    {% elif cookiecutter.open_source_license == 'GPL-3.0-or-later' -%}"License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    {% elif cookiecutter.open_source_license == 'NOASSERTION' -%}# "License :: not yet set, add here later before publishing to PyPi!",
+    {% endif %}"Natural Language :: English",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12"
@@ -39,10 +45,7 @@ dependencies = [
     "geopandas",
     "numpy",
     "rasterio",
-    "shapely"
-  {% if cookiecutter.command_line_interface.lower() == "typer" -%}
-    "typer"
-{%- endif %}
+    "shapely",
 ]
 
 [project.readme]
@@ -57,24 +60,35 @@ maintainers = [
 doc = [
     "sphinx>=4.1.1",
     "sphinx-argparse",
-    "sphinx-autodoc-typehints",
     "sphinx_rtd_theme",
+    "sphinx-autodoc-typehints",
     "sphinxcontrib-openapi",
     "sphinxcontrib-websupport",
     "numpydoc>=1.7"
 ]
+
 test = [
     "pytest>=3",
     "pytest-cov",
     "pytest-reporter-html1",
     "urlchecker"
 ]
+
 lint = [
-    "pre-commit"
+    {%- if cookiecutter.use_precommit == 'y' %}
+    "pre-commit",
+    {%- else %}
+    "flake8",
+    "pycodestyle",
+    "pydocstyle"
+    {%- endif %}
 ]
+
 dev = [
     "coverage",     # testing
+    {%- if cookiecutter.use_precommit == 'y' %}
     "pre-commit",   # linting
+    {%- endif %}
     "pytest",       # testing
     "twine",        # deployment
     "build"         # deployment
@@ -87,6 +101,21 @@ dev = [
 "Change log" = "https://git.gfz-potsdam.de/{{cookiecutter.__gh_slug}}/-/blob/main/HISTORY.rst"
 # "Zenodo" = "https://zenodo.org/record/doi_number"
 
+{%- if cookiecutter.use_precommit == 'y' %}
+[tool.ruff]
+# Top-level settings for Ruff, like exclusion patterns or file line endings, can go here.
+lint.select = ["D", "N"]  # Enable docstring checks and Numpy checks
+lint.ignore = ["D203", "D213"]  # Example ignores for specific codes that conflict with NumPy style
+
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.darglint]
+docstring_style = "numpy"
+strictness = 3  # Adjust to 3 for even more detailed messages
+{%- endif %}
+
 [tool.setuptools]
 zip-safe = false
 include-package-data = true
@@ -97,9 +126,7 @@ exclude = [
     "docs*",
     "tests*",
 ]
-namespaces = false
-
-{% if cookiecutter.command_line_interface == 'Yes' %}
+namespaces = false{% if cookiecutter.command_line_interface == 'Yes' %}
 [project.scripts]
 {{cookiecutter.slug}} = "{{cookiecutter.project_slug}}.{{cookiecutter.project_slug}}_cli:main"
 {% endif %}
