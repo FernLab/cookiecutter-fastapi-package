@@ -1,5 +1,5 @@
 {
-  "full_name": "FernLab",
+  "full_name": "FERN.Lab",
   "email": "fernlab@gfz-potsdam.de",
   "github_username": "fernlab",
   "gitlab_group_or_username": "{{ cookiecutter.github_username }}",
@@ -9,10 +9,10 @@
   "project_short_description": "FastAPI Boilerplate contains all the boilerplate you need to create a FastAPI Python package.",
   "pypi_username": "{{ cookiecutter.github_username }}",
   "version": "0.1.0",
-  "use_pytest": "y",
+  "use_precommit": "y",
   "add_pyup_badge": "n",
   "command_line_interface": ["Argparse", "No command-line interface"],
   "create_author_file": "y",
-  "open_source_license": ["MIT", "BSD-3-Clause", "ISC", "Apache-2.0", "GPL-3.0-or-later", "EUPL-1.2", "NOASSERTION"],
+  "open_source_license": ["EUPL-1.2", "MIT", "BSD-3-Clause", "ISC", "Apache-2.0", "GPL-3.0-or-later", "NOASSERTION"],
   "__gh_slug": "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 }
