@@ -36,6 +36,5 @@ def home():
     """
     return JSONResponse(
         status_code=200,
-        content={"msg": f"{APP_NAME} APIs is working. Use /docs or /redoc to see the documentation."
-        },
+        content={"msg": f"{APP_NAME} APIs is working. Use /docs or /redoc to see the documentation."},
     )

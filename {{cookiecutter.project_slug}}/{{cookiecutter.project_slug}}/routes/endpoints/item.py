@@ -70,6 +70,9 @@ def get_item_by_id(item_id: str):
     """
     item = [item for item in data if item["id"] == item_id]
     if not item:
-        return JSONResponse(status_code=404, content={"msg": f"Item with id ({item_id}) not found!"},)
+        return JSONResponse(
+            status_code=404,
+            content={"msg": f"Item with id ({item_id}) not found!"},
+        )
 
     return {"data": item[0]}
