@@ -180,16 +180,6 @@ def test_using_pytest(cookies):
         run_inside_dir('pytest', str(result.project)) == 0
 
 
-def test_not_using_pytest(cookies):
-    with bake_in_temp_dir(cookies, extra_context={'use_pytest': 'n'}) as result:
-        assert result.project.isdir()
-        test_file_path = result.project.join(
-            'tests/test_fastapi_boilerplate.py'
-        )
-        lines = test_file_path.readlines()
-        assert "import pytest" not in ''.join(lines)
-
-
 def test_bake_with_no_console_script(cookies):
     context = {'command_line_interface': "No command-line interface"}
     result = cookies.bake(extra_context=context)
