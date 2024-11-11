@@ -26,7 +26,14 @@ APP_NAME = config["meta"]["app_name"]
     },
 )
 def home():
-    """Return HomePage."""
+    """
+    Return HomePage.
+
+    Returns
+    -------
+    JSONResponse
+        A JSON response containing a message indicating that the API is working.
+    """
     return JSONResponse(
         status_code=200,
         content={"msg": f"{APP_NAME} APIs is working. Use /docs or /redoc to see the documentation."
