@@ -1,13 +1,9 @@
 # SPDX-License-Identifier: {{ cookiecutter.open_source_license }}
 # FileType: SOURCE
 # FileCopyrightText: {% now 'utc', '%Y' %}, {{ cookiecutter.full_name }} at GFZ Potsdam
-
 """
-{{ cookiecutter.project_slug }} documentation build configuration file.
-
-This file is used to configure the Sphinx documentation build process for the
-{{ cookiecutter.project_slug }} project. It defines the necessary settings and
-extensions to generate the documentation.
+Documentation build configuration file for {{ cookiecutter.project_slug }}. This file is used to configure the Sphinx documentation build
+process for the {{ cookiecutter.project_slug }} project. It defines the necessary settings and extensions to generate the documentation.
 
 See the Sphinx documentation for more information on how to customize this file:
 https://www.sphinx-doc.org/en/master/
