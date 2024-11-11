@@ -33,7 +33,14 @@ data = [
     },
 )
 def get_items():
-    """Return a list of items."""
+    """
+    Return a list of items.
+
+    Returns
+    -------
+    dict
+        A dictionary containing the list of items.
+    """
     return {"data": data}
 
 
@@ -48,11 +55,24 @@ def get_items():
     },
 )
 def get_item_by_id(item_id: str):
-    """Return an item from list by its id."""
+    """
+    Return an item from list by its id.
+
+    Parameters
+    ----------
+    item_id : str
+        The id of the item to retrieve.
+
+    Returns
+    -------
+    dict
+        A dictionary containing the item data.
+    """
     item = [item for item in data if item["id"] == item_id]
     if not item:
         return JSONResponse(
-            status_code=404, content={"msg": f"Item with id ({item_id}) not found!"}
+            status_code=404,
+            content={"msg": f"Item with id ({item_id}) not found!"},
         )
 
     return {"data": item[0]}

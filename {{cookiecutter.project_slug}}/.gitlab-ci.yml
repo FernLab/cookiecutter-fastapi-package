@@ -50,11 +50,17 @@ test_styles:
     - source activate ci_env
     # install missing dependencies in the CI container
     - mamba env update --name ci_env --file tests/CI_docker/context/environment_{{ cookiecutter.project_slug }}.yml  --prune
-    # run pre-commit and save output to file while not blocking a commit if it fails
+    # run style checks and save output to file while not blocking a commit if it fails
     - make lint
   artifacts:
     paths:
-      - tests/linting/pre-commit-output.txt
+        {%- if cookiecutter.use_precommit == 'y' %}
+        - tests/linting/pre-commit-output.txt
+        {%- else %}
+        - tests/linting/flake8.log
+        - tests/linting/pycodestyle.log
+        - tests/linting/pydocstyle.log
+        {%- endif %}
     when: always
 
 

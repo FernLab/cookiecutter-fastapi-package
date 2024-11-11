@@ -1,6 +1,15 @@
 # SPDX-License-Identifier: {{ cookiecutter.open_source_license }}
 # FileType: SOURCE
 # FileCopyrightText: {% now 'utc', '%Y' %}, {{ cookiecutter.full_name }} at GFZ Potsdam
+"""
+Documentation build configuration file for {{ cookiecutter.project_slug }}.
+
+This file is used to configure the Sphinx documentation build
+process for the {{ cookiecutter.project_slug }} project. It defines the necessary settings and extensions to generate the documentation.
+
+See the Sphinx documentation for more information on how to customize this file:
+https://www.sphinx-doc.org/en/master/
+"""
 
 
 
@@ -128,6 +137,18 @@ todo_include_todos = True
 
 # Apply custom sphinx styles (e.g., increase content width of generated docs)
 def setup(app):
+    """
+    Add a custom CSS file to the documentation.
+
+    The custom CSS file should be
+    put in the /docs/static directory and can be used to override styles in
+    the main CSS file.
+
+    Parameters
+    ----------
+    app : sphinx.application
+        The Sphinx application.
+    """
     app.add_css_file('custom.css')
 
 
