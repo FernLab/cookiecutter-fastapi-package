@@ -62,7 +62,7 @@ class Test{{ cookiecutter.project_slug|title }}():
 def response():
     """
     Sample pytest fixture.
-    
+
     See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
     """
 
