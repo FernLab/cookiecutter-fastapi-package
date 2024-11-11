@@ -11,4 +11,4 @@ ROOT_DIR = \
     os.path.abspath(os.path.join(
         os.path.dirname({{ cookiecutter.project_slug }}.__file__), ".."))
 
-os.environ['service_namespace'] = 'test-service'
+os.environ['SERVICE_NAMESPACE'] = 'test-service'
