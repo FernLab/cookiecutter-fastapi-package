@@ -2,7 +2,9 @@
 # FileType: SOURCE
 # FileCopyrightText: {% now 'utc', '%Y' %}, {{ cookiecutter.full_name }} at GFZ Potsdam
 """
-Documentation build configuration file for {{ cookiecutter.project_slug }}. This file is used to configure the Sphinx documentation build
+Documentation build configuration file for {{ cookiecutter.project_slug }}.
+
+This file is used to configure the Sphinx documentation build
 process for the {{ cookiecutter.project_slug }} project. It defines the necessary settings and extensions to generate the documentation.
 
 See the Sphinx documentation for more information on how to customize this file:
