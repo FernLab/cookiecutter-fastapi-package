@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: {{ cookiecutter.open_source_license }}
 # FileType: SOURCE
 # FileCopyrightText: {% now 'utc', '%Y' %}, {{ cookiecutter.full_name }} at GFZ Potsdam
-
-
 """Tests for `{{ cookiecutter.project_slug }}` package."""
 
 import pytest
@@ -62,7 +60,9 @@ class Test{{ cookiecutter.project_slug|title }}():
 
 @pytest.fixture
 def response():
-    """Sample pytest fixture.
+    """
+    Sample pytest fixture.
+    
     See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
     """
 
