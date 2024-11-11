@@ -142,18 +142,14 @@ def setup(app):
     """
     Add a custom CSS file to the documentation.
 
-    The custom CSS file should be put in the static directory and can be used
-    to override styles in the main CSS file.
+    The custom CSS file should be
+    put in the /docs/static directory and can be used to override styles in
+    the main CSS file.
 
     Parameters
     ----------
     app : sphinx.application
         The Sphinx application.
-
-    Returns
-    -------
-    None
-
     """
     app.add_css_file('custom.css')
 
