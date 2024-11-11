@@ -22,16 +22,11 @@ ALLOWED_ORIGINS = (
 
 # --------------------------------------------------- #
 # ------------------- Directories ------------------- #
-ROOT_DIR = os.path.abspath(
-    os.path.join(os.path.dirname({{ cookiecutter.project_slug }}.__file__), "..")
-)
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(boilerplate.__file__), ".."))
 
 # --------------------------------------------------- #
 # ---------------- Set Path for test ---------------- #
-if (
-    "service_namespace" in os.environ
-    and os.environ["service_namespace"] == "test-service"
-):
+if "service_namespace" in os.environ and os.environ["service_namespace"] == "test-service":
     SERVICE_NAMESPACE = os.environ["service_namespace"]
 
     # Creates a directory for results in test mode
