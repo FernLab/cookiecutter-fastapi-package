@@ -66,7 +66,7 @@ def response():
     See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
     """
 
-def test_content(response):
+def test_content():
     """Sample pytest test function which prints the package version."""
     assert {{ cookiecutter.project_slug }}.__version__ == "{{ cookiecutter.version }}"
 
@@ -84,12 +84,34 @@ class Test{{ cookiecutter.project_slug|title }}:
         """Run once after all tests in the class have run."""
         print("Tearing down Test_{{ cookiecutter.project_slug|title }} class")
 
-    def setup_method(self, method):
-        """Run before each test method to set up clean state."""
+    def setup_method(self, method:callable):
+        """
+        Run before each test method to set up clean state.
+
+        Parameters
+        ----------
+        method : callable
+            The test method to set up for.
+
+        Notes
+        -----
+        This method is called before each test method to ensure a clean state.
+        """
         print(f"Setting up for {method.__name__}")
 
-    def teardown_method(self, method):
-        """Run after each test method to clean up."""
+    def teardown_method(self, method:callable):
+        """
+        Run after each test method to clean up.
+
+        Parameters
+        ----------
+        method : callable
+            The test method to clean up after.
+
+        Notes
+        -----
+        This method is called after each test method to clean up any resources.
+        """
         print(f"Tearing down {method.__name__}")
 
     def test_000_something(self):
