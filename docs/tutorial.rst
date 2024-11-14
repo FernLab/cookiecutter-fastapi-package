@@ -327,8 +327,4 @@ Developed by
   :width: 150
   :alt: FERNLab Logo
   
-This FastAPI package boilerplate has been developed by `FERN.Lab`_, the Helmholtz Innovation Lab "Remote sensing for sustainable use of resources", located at the `Helmholtz Centre Potsdam, GFZ German Research Centre for Geosciences`_. FERN.Lab is funded by the `Initiative and Networking Fund of the Helmholtz Association`_.
-
-.. _`FERN.Lab`: https://fernlab.gfz-potsdam.de/
-.. _`Helmholtz Centre Potsdam, GFZ German Research Centre for Geosciences`: https://www.gfz-potsdam.de/en/ 
-.. _`Initiative and Networking Fund of the Helmholtz Association`: https://www.helmholtz.de/en/about-us/structure-and-governance/initiating-and-networking/
+This FastAPI package boilerplate has been developed by `FERN.Lab <https://fernlab.gfz-potsdam.de/>`_, the Helmholtz Innovation Lab "Remote sensing for sustainable use of resources", located at the `Helmholtz Centre Potsdam, GFZ German Research Centre for Geosciences <https://www.gfz-potsdam.de/en/>`_. FERN.Lab is funded by the `Initiative and Networking Fund of the Helmholtz Association <https://www.helmholtz.de/en/about-us/structure-and-governance/initiating-and-networking/>`_.
