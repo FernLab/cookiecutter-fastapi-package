@@ -339,7 +339,7 @@ In case of needing the new package(s) you just need to add them to this list. As
 
 Then open up the ``pyproject.toml`` file at the root of the project and look for
 
-.. code-block::
+.. code-block:: toml
 
     dependencies = [
         "fastapi",
@@ -353,6 +353,19 @@ You need to add new package(s) also here and again, try to follow alphabetic ord
 
 6.2. Developing tests
 ~~~~~~~~~~~~~~~~~~~~~
+
+There are default test functions under ``/tests/test_<slug_name>.py``. For developing new test cases, you can create a new file like the defualt test file whose name starts with ``test_`` and start with testing.
+
+
+If the test scenarios you are developing require some test files, we recommend you to create a ``/data`` directory under ``/tests`` and store files and folders there. Then to access this directory in your test use following python code:
+
+.. code-block:: python
+
+    from <slug_name>.core.env import ROOT_DIR
+
+    test_dir = os.path.join(ROOT_DIR, "tests", "data")
+
+The global variable ``ROOT_DIR`` can be used across the application to set internal paths in a standard way.
 
 6.3. Having trouble?
 ~~~~~~~~~~~~~~~~~~~~
