@@ -261,23 +261,15 @@ In the above code, the group is our directory in the gitlab (here is fernlab) an
 5. Create and attach a runner to the repository
 -----------------------------------------------
 
-Login to a mefe machine you like to deploy the runner using your gfz email id (i.e.  ``<email-id>@gfz-potsdam.de``) and your master password:
+After login to a machine where you want to have your runner, execute following command:
 
 .. code-block:: bash
 
-    ssh <email-id>@<mefe-name>
-
-Pull the repository to the mefe machine by executing following commands:
-
-.. code-block:: bash
-
-    cd /misc/fernlab1/misc/
+    cd /path/you/want/to/pull/the/repository
     git clone https://git.gfz-potsdam.de/<group/subgroup/project_slug>.git
 
 
-When you're asked by credential, use your gfz email id and your master password.
-
-    Remember! Clone with ssh (``git clone git@github.com:...``) is not working here and you need to use HTTPS as mentioned above.
+Once you are asked for the username and password, use your email id and the master password.
 
 Then build the runner by executing following commands:
 
@@ -366,7 +358,7 @@ to make sure that packages are installed correctly and there is not version inco
 6.2. Developing tests
 ~~~~~~~~~~~~~~~~~~~~~
 
-There are default test functions under ``/tests/test_<slug_name>.py``. For developing new test cases, you can create a new file like the defualt test file whose name starts with ``test_`` and start with testing.
+There are default test functions under ``/tests/test_<slug_name>.py``. For developing new test cases, you can create a new file like the default test file whose name starts with ``test_`` and start with testing.
 
 
 If the test scenarios you are developing require some test files, we recommend you to create a ``/data`` directory under ``/tests`` and store files and folders there. Then to access this directory in your test use following python code:
