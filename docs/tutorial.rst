@@ -75,7 +75,7 @@ To install cookiecutter, you can use **pip** as follow:
 ~~~~~~~~~~~~~~
 **Miniforge** is the light version of Conda that is used for managing the python environment for each python package you are working on. Using **Miniforge**, you can have different python environment with different python packages and version for specific project.
 
-Based on [official conda-forge documentation](https://github.com/conda-forge/miniforge?tab=readme-ov-file#install), you can use one of the following scripts to install **Miniforge** on your machine:
+Based on `official conda-forge documentation <https://github.com/conda-forge/miniforge?tab=readme-ov-file#install>`_, you can use one of the following scripts to install **Miniforge** on your machine:
 
 .. code-block:: bash
 
