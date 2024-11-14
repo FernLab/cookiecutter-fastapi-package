@@ -5,33 +5,37 @@
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-from {{ cookiecutter.project_slug }}.core.config_parser import config
 from {{ cookiecutter.project_slug }}.core import env as environment
+from {{ cookiecutter.project_slug }}.core.config_parser import config
 from {{ cookiecutter.project_slug }}.routes.api import api_router
 
-APP_NAME = config['meta']['app_name']
-APP_DESC = config['meta']['app_description']
-APP_VERSION = config['meta']['app_version']
-APP_TERMS = config['meta']['app_terms']
-APP_DOC_NAME = config['meta']['app_doc_name']
+APP_NAME = config["meta"]["app_name"]
+APP_DESC = config["meta"]["app_description"]
+APP_VERSION = config["meta"]["app_version"]
+APP_TERMS = config["meta"]["app_terms"]
+APP_DOC_NAME = config["meta"]["app_doc_name"]
 
-CONTACT_NAME = config['maintainer']['name']
-CONTACT_LINK = config['maintainer']['link']
-CONTACT_MAIL = config['maintainer']['mail']
+CONTACT_NAME = config["maintainer"]["name"]
+CONTACT_LINK = config["maintainer"]["link"]
+CONTACT_MAIL = config["maintainer"]["mail"]
 
-LICENSE_NAME = config['license']['name']
-# LICENSE_LINK = config['license']['link']
+LICENSE_NAME = config["license"]["name"]
+# LICENSE_LINK = config["license"]["link"]
 
-docs_url = '/docs'
-redoc_url = '/redoc'
-openapi_url = f'/{APP_DOC_NAME}.json'
+DOCS_URL = "/docs"
+REDOCS_URL = "/redoc"
+OPENAPI_URL = f"/{APP_DOC_NAME}.json"
+
+ROOT_PATH = environment.ROOT_PATH
+ALLOWED_ORIGINS = environment.ALLOWED_ORIGINS
 
 if environment.SERVICE_NAMESPACE:
     service_namespace = environment.SERVICE_NAMESPACE
-    docs_url = f'/{service_namespace}/docs'
-    redoc_url = f'/{service_namespace}/redoc'
-    openapi_url = f'/{service_namespace}/{APP_DOC_NAME}.json'
+    DOCS_URL = f"/{service_namespace}/docs"
+    REDOCS_URL = f"/{service_namespace}/redoc"
+    OPENAPI_URL = f"/{service_namespace}/{APP_DOC_NAME}.json"
 
 fastapi_app = FastAPI(
     title=APP_NAME,
@@ -47,14 +51,24 @@ fastapi_app = FastAPI(
         "name": LICENSE_NAME,
         # "url": LICENSE_LINK
     },
-    docs_url=docs_url,
-    redoc_url=redoc_url,
-    openapi_url=openapi_url)
+    docs_url=DOCS_URL,
+    redoc_url=REDOCS_URL,
+    openapi_url=OPENAPI_URL,
+    root_path=ROOT_PATH,
+)
+
+fastapi_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 fastapi_app.include_router(api_router)
 
 if environment.SERVICE_NAMESPACE:
     # service_namespace = environment.SERVICE_NAMESPACE
-    fastapi_app.include_router(api_router, prefix=f'/{service_namespace}')
+    fastapi_app.include_router(api_router, prefix=f"/{service_namespace}")
 
 app = fastapi_app
