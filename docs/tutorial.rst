@@ -365,7 +365,7 @@ If the test scenarios you are developing require some test files, we recommend y
 
     test_dir = os.path.join(ROOT_DIR, "tests", "data")
 
-The global variable ``ROOT_DIR`` can be used across the application to set internal paths in a standard way.
+    The global variable ``ROOT_DIR`` can be used across the application to set internal paths in a standard way.
 
 6.3. Having trouble?
 ~~~~~~~~~~~~~~~~~~~~
