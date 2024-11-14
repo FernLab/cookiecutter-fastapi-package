@@ -1,149 +1,334 @@
 Tutorial
 ========
 
-.. note:: Did you find any of these instructions confusing? `Edit this file`_
-          and submit a pull request with your improvements!
+This tutorial refers to this FERN.Lab version of cookiecutter FastAPI package, which is a fork of `cookiecutter`_.
 
-.. _`Edit this file`: https://github.com/audreyfeldroy/cookiecutter-pypackage/blob/master/docs/tutorial.rst
+To start with, you will need access to GitHub or GitLab, depending on where you want to keep your package.
+If you want to publish on PyPi you need an account on `PyPI`_. Create these before you get started on this tutorial. If you are new to Git and GitHub, you should probably spend a few minutes on some of the tutorials at the top of the page at `GitHub Help`_.
 
-To start with, you will need a `GitHub account`_ and an account on `PyPI`_. Create these before you get started on this tutorial. If you are new to Git and GitHub, you should probably spend a few minutes on some of the tutorials at the top of the page at `GitHub Help`_.
-
-.. _`GitHub account`: https://github.com/
 .. _`PyPI`: https://pypi.python.org/pypi
 .. _`GitHub Help`: https://help.github.com/
+.. _`cookiecutter`: https://github.com/audreyfeldroy/cookiecutter-pypackage
 
 
-Step 1: Install Cookiecutter
+FastAPI Python Package
+======================
+This manual explains how to create a directory structure for a Python-FastAPI project using the **Cookiecutter** template from **FERNLab**.
+
+Furthermore, it also explains how to create a GitLab repository for that package and deploy it as a service using **Docker**.
+
+1. Install the pre-requirements.
+2. Generate a FastAPI API directory structure.
+3. Prepare Gitlab repository.
+4. Create and attach a runner to the repository.
+5. Run as a service.
+6. Appendix.
+
+**Please Note** The following instruction is for **Ubuntu 20.04**.
+
+1. Install the pre-requirements
+-------------------------------
+Before generating generating your own directory using this template, you need to have
+
+* **Git** version ``2.28`` or higher
+* **Cookiecutter** version ``1.4.0`` or higher 
+* **Miniforge Conda**
+
+to be installed on your machine.
+
+
+1.1. Git
+~~~~~~~~
+First check to see if you already have **git** on your machine by doing 
+
+.. code-block:: bash
+
+    git --version
+
+If **git** is not found on your machine, it could be installed easily by doing
+
+.. code-block:: bash
+
+    sudo apt-get update
+    sudo apt install git-all
+
+If you have **git** but it has version older than ``2.28``, you could upgrade it by
+
+.. code-block:: bash
+
+    sudo add-apt-repository ppa:git-core/ppa
+    sudo apt update
+    sudo apt-get upgrade -y git
+
+1.2. Cookiecutter
+~~~~~~~~~~~~~~~~~
+To install cookiecutter, you can use **pip** as follow:
+
+.. code-block:: bash
+
+    # Install using pip
+    pip install -U cookiecutter
+    # Check installed version
+    cookiecutter --version
+
+1.3. Miniforge
+~~~~~~~~~~~~~~
+**Miniforge** is the light version of Conda that is used for managing the python environment for each python package you are working on. Using **Miniforge**, you can have different python environment with different python packages and version for specific project.
+
+Based on [official conda-forge documentation](https://github.com/conda-forge/miniforge?tab=readme-ov-file#install), you can use one of the following scripts to install **Miniforge** on your machine:
+
+.. code-block:: bash
+
+    # Using curl
+    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    bash Miniforge3-$(uname)-$(uname -m).sh
+
+    # or using wget
+    wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    bash Miniforge3-$(uname)-$(uname -m).sh
+
+Once you installed it, you need to close the terminal and reopen it. Then do
+
+.. code-block:: bash
+
+    mamba env list
+
+and you will see
+
+.. code-block:: bash
+    
+    # conda environments:
+    #
+    base                  *  /home/arash/miniforge3
+
+which is the base environment automatically created by **mamba** during the installation.
+
+More information can be found on [their github repository](https://github.com/conda-forge/miniforge).
+
+    Now you have everything you need for generating python package directory.
+
+
+2. Generate a FastAPI API directory structure
+---------------------------------------------
+
+2.1. Clone the source code
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can clone the repository from https://github.com/FernLab/cookiecutter-fastapi-package by doing
+
+.. code-block:: bash
+   
+    git clone https://github.com/FernLab/cookiecutter-fastapi-package.git
+
+
+2.2. Generate the directory by setting parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cookiecutter provides you with a command line interface (CLI) to interact with it to customize your python project directory.
+
+Once you cloned the repository, make sure that you are in the parent directory of the cloned repository because cookiecutter looks for it to generate the directory. Then by doing
+
+.. code-block:: bash
+
+    cookiecutter cookiecutter-fastapi-package
+
+You are asked by multiple questions as follow
+
+.. code-block:: bash
+
+    [1/15] full_name (FERN.Lab): 
+    [2/15] email (fernlab@gfz-potsdam.de): 
+    [3/15] github_username (fernlab): 
+    [4/15] gitlab_group_or_username (fernlab): 
+    [5/15] gitlab_subgroup_name (): 
+    [6/15] project_name (FastAPI Boilerplate): 
+    [7/15] project_slug (fastapi_boilerplate): 
+    [8/15] project_short_description (FastAPI Boilerplate contains all the boilerplate you need to create a FastAPI Python package.): 
+    [9/15] pypi_username (fernlab): 
+    [10/15] version (0.1.0): 
+    [11/15] use_precommit (n): 
+    [12/15] add_pyup_badge (n): 
+    [13/15] Select command_line_interface
+      1 - Argparse
+      2 - No command-line interface
+      Choose from [1/2] (1): 
+    [14/15] create_author_file (y): 
+    [15/15] Select open_source_license
+      1 - EUPL-1.2
+      2 - MIT
+      3 - BSD-3-Clause
+      4 - ISC
+      5 - Apache-2.0
+      6 - GPL-3.0-or-later
+      7 - NOASSERTION
+      Choose from [1/2/3/4/5/6/7] (1):
+
+which are explained here:
+
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| Step  | Field Name                | Default                                                                                       | 
++=======+===========================+===============================================================================================+ 
+| 1     | full_name                 | FERN.Lab                                                                                      |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 2     | email                     | fernlab@gfz-potsdam.de                                                                        |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 3     | github_username           | fernlab                                                                                       |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 4     | gitlab_group_or_username  | fernlab                                                                                       |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 5     | gitlab_subgroup_name      |                                                                                               |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 6     | project_name              | FastAPI Boilerplate                                                                           |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 7     | project_slug              | fastapi_boilerplate                                                                           |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 8     | project_short_description | FastAPI Boilerplate contains all the boilerplate you need to create a FastAPI Python package. |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 9     | pypi_username             | fernlab                                                                                       |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 10    | version                   | 0.1.0                                                                                         |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 11    | use_precommit             | n                                                                                             |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 12    | add_pyup_badge            | n                                                                                             |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 13    | command_line_interface    | 1                                                                                             |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 14    | create_author_file        | y                                                                                             |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+| 15    | open_source_license       | 1                                                                                             |
++-------+---------------------------+-----------------------------------------------------------------------------------------------+ 
+
+    Note: Depending on your project choose the appropriate License. For most of the projects it is recommended option 1), the EUPL License. Could be changed later on if necessary.
+
+3. Run tests
+------------
+
+It's about testing the directory locally. The purpose of this step is to make sure if the directory was generated successfully, before pushing the codes to the GitLab repository and creating the corresponding runner.
+
+To do that, the template provides some commands.
+
+.. code-block:: bash
+
+    cd <project_slug>
+    mamba env create -f tests/CI_docker/context/environment_<project_slug>.yml
+    mamba activate <project_slug>
+    pip install .
+    make pytest
+    make lint
+    make urlcheck
+    make docs
+
+which are respectively for testing the whole package, lint style, urls, and documentation.
+
+4. Prepare Gitlab repository
 ----------------------------
 
-First, you need to create and activate a virtualenv for the package project. Use your favorite method, or create a virtualenv for your new package like this:
+After making sure that project has been successfully created, we need to create a blank gitlab repository and push the generated directory structure to it. To achieve this, follow these steps:
+
+4.1 Create repository using Web UI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+On gitlab website, under the sub-group you want:
+
+* Create a new project by clicking on **New project**
+* Click on **Create blank project**
+* Give a **project name** at your choice
+* For the **project slug** pick the same name as the one given once you created directory at step 7 (check table above)
+* It's very important to unset the option ``Initialize repository with a README``
+* Click on **Create project**
+
+4.2. Push the repository
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Once you created the blank repository, follow the instructions to push the directory to the remote repository.
+
+They are summarized here:
 
 .. code-block:: bash
 
-    virtualenv ~/.virtualenvs/mypackage
-
-Here, ``mypackage`` is the name of the package that you'll create.
-
-Activate your environment:
-
-.. code-block:: bash
-
-    source bin/activate
-
-On Windows, activate it like this. You may find that using a Command Prompt window works better than gitbash.
-
-.. code-block:: powershell
-
-    > \path\to\env\Scripts\activate
-
-.. note::
-
-    If you create your virtual environment folder in a different location within your project folder, be sure to add that path to your .gitignore file.
-
-Install cookiecutter:
-
-.. code-block:: bash
-
-    pip install cookiecutter
-
-
-Step 2: Generate Your Package
------------------------------
-
-Now it's time to generate your Python package.
-
-Use cookiecutter, pointing it at the cookiecutter-pypackage repo:
-
-.. code-block:: bash
-
-    cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage.git
-
-You'll be asked to enter various values to set the package up.
-If you don't know what to enter, press Enter to stick with the defaults.
-
-
-Step 3: Create a GitHub Repo
-----------------------------
-
-Go to your GitHub account and create a new repo named ``mypackage``, where ``mypackage`` matches the ``[project_slug]`` from your answers to running cookiecutter. This is so that pyup.io can find it when we get to Step 5.
-
-You will find one folder named after the ``[project_slug]``. Move into this folder, and then setup git to use your GitHub repo and upload the code:
-
-.. code-block:: bash
-
-    cd mypackage
-    git init .
+    cd <project_slug>
+    git init --initial-branch=main
+    git remote add origin git@git.gfz-potsdam.de:<group/subgroup/project_slug>.git
     git add .
-    git commit -m "Initial skeleton."
-    git remote add origin git@github.com:myusername/mypackage.git
+    git commit -m "Initial commit"
     git push -u origin main
 
-Where ``myusername`` and ``mypackage`` are adjusted for your username and package name.
+Now on you browser, refresh the page to see the repository.
 
-You'll need a ssh key to push the repo. You can `Generate`_ a key or `Add`_ an existing one.
+In the above code, the group is our directory in the gitlab (here is fernlab) and the subgroup is the text comes between the group and the project_name name.
 
-.. _`Generate`: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
-.. _`Add`: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+5. Create and attach a runner to the repository
+-----------------------------------------------
 
-
-Step 4: Install Dev Requirements
---------------------------------
-
-You should still be in the folder containing the ``requirements_dev.txt`` file.
-
-Your virtualenv should still be activated. If it isn't, activate it now. Install the new project's local development requirements:
+Login to a mefe machine you like to deploy the runner using your gfz email id (i.e.  ``<email-id>@gfz-potsdam.de``) and your master password:
 
 .. code-block:: bash
 
-    pip install -r requirements_dev.txt
+    ssh <email-id>@<mefe-name>
+
+Pull the repository to the mefe machine by executing following commands:
+
+.. code-block:: bash
+
+    cd /misc/fernlab1/misc/
+    git clone https://git.gfz-potsdam.de/<group/subgroup/project_slug>.git
 
 
-Step 5: Set Up Read the Docs
---------------------------
+When you're asked by credential, use your gfz email id and your master password.
 
-`Read the Docs`_ hosts documentation for the open source community. Think of it as Continuous Documentation.
+    Remember! Clone with ssh (``git clone git@github.com:...``) is not working here and you need to use HTTPS as mentioned above.
 
-Log into your account at `Read the Docs`_ . If you don't have one, create one and log into it.
+Then build the runner by executing following commands:
 
-If you are not at your dashboard, choose the pull-down next to your username in the upper right, and select "My Projects". Choose the button to Import the repository and follow the directions.
+.. code-block:: bash
+    
+    cd <project_slug>/tests/CI_docker
+    chmod 755 build_<project_slug>_testsuite_image.sh
+    ./build_<project_slug>_testsuite_image.sh
 
-Now your documentation will get rebuilt when you make documentation changes to your package.
+This will start building a docker image which will be the CI runner docker image.
 
-.. _`Read the Docs`: https://readthedocs.org/
+Once it is built it will ask for a token. To get token, on gitlab follow steps below:
 
-Step 6: Set Up pyup.io
-----------------------
+* Go to **Settings** > **CI/CD** > **Runners**.
+* Blow the Project runners, click on **New Project Runner**.
+  * Leave Tags empty
+  * Activate option ``Run untagged jobs``. 
+  * Activate option ``Lock to current project``.
+  * Set a timeout if needed (can be left empty to use the default, can be changed later)
+* Click on **Create runner**.
+* Please copy the token you are getting.
+* On mefe console, paste the token and pres enter.
+* Then you will be asked for a name for the runner. It is recommended to follow this nomenclature:
 
-`pyup.io`_ is a service that helps you to keep your requirements files up to date. It sends you automated
-pull requests whenever there's a new release for one of your dependencies.
+``<package_name>_CI__v<package_version>__<mefe_machine>``
 
-To use it, create a new account at `pyup.io`_ or log into your existing account.
+In this naming style:
+- ``package_version``: since it is the first runner the version is ``0.1.0``
+- ``mefe_machine``: in our example ``mefe4``
 
-Click on the green ``Add Repo`` button in the top left corner and select the repo you created in Step 3. A popup will
-ask you whether you want to pin your dependencies. Click on ``Pin`` to add the repo.
+you can also add your name or a short version so people know who this runner belongs to.
 
-Once your repo is set up correctly, the pyup.io badge will show your current update status.
+Once you press enter, go to **Settings** > **CI/CD** > **Runners**. The runner will be listed here and you should now be able to see a pipeline running.
 
-.. _`pyup.io`: https://pyup.io/
+Having trouble?
+---------------
 
-Step 7: Release on PyPI
------------------------
+Go to our `Issues`_ page and create a new Issue. Be sure to give as much information as possible.
 
-The Python Package Index or `PyPI`_ is the official third-party software repository for the Python programming language. Python developers intend it to be a comprehensive catalog of all open source Python packages.
-
-When you are ready, release your package the standard Python way.
-
-See `PyPI Help`_ for more information about submitting a package.
-
-Here's a release checklist you can use: https://github.com/audreyfeldroy/cookiecutter-pypackage/blob/master/docs/pypi_release_checklist.rst
-
-.. _`PyPI`: https://pypi.python.org/pypi
-.. _`PyPI Help`: https://pypi.org/help/#publishing
+.. _`Issues`: https://github.com/FernLab/cookiecutter-fastapi-package/issues
 
 
-Having problems?
-----------------
+Developed by
+============
 
-Visit our :ref:`troubleshooting` page for help. If that doesn't help, go to our `Issues`_ page and create a new Issue. Be sure to give as much information as possible.
+.. image:: https://fernlab.gfz-potsdam.de/images/Fern.Lab_weiss-quadrat.png
+  :width: 150
+  :alt: FERNLab Logo
+  
+This FastAPI package boilerplate has been developed by `FERN.Lab`_, the Helmholtz Innovation Lab "Remote sensing for sustainable use of resources", located at the `Helmholtz Centre Potsdam, GFZ German Research Centre for Geosciences`_. FERN.Lab is funded by the `Initiative and Networking Fund of the Helmholtz Association`_.
 
-.. _`Issues`: https://github.com/audreyfeldroy/cookiecutter-pypackage/issues
+.. _`FERN.Lab`: https://fernlab.gfz-potsdam.de/
+.. _`Helmholtz Centre Potsdam, GFZ German Research Centre for Geosciences`: https://www.gfz-potsdam.de/en/ 
+.. _`Initiative and Networking Fund of the Helmholtz Association`: https://www.helmholtz.de/en/about-us/structure-and-governance/initiating-and-networking/
