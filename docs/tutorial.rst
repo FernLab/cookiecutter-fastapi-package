@@ -318,6 +318,35 @@ Once you press enter, go to **Settings** > **CI/CD** > **Runners**. The runner w
 6.1. Adding new packages
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+We use **Miniforge** to manage python packages using dedicated environment for your repository and to do that we use a YAML file format could be found under ``tests/CI_docker/context/environment_<project_slug>.yml``. When project directory was generated and you check this file, under the ``dependencies`` section you could find
+
+.. code-block::
+
+  # development requirements
+  - fastapi
+  - httpx
+  - uvicorn
+  - geopandas
+  - numpy
+  - rasterio
+  - shapely
+
+which are the default and most common used packages for geospatial data manipulation. In case of needing new package(s) you can add them below this list. We recommend to stick to this structure and follow alphabetic order for this list that helps you to find packages easily in the future.
+
+When you updated this list, open up the ``pyproject.toml`` file and look for. You need to add new package(s) also here and again, try to follow alphabetic order.
+
+.. code-block::
+
+    dependencies = [
+        "fastapi",
+        "geopandas",
+        "numpy",
+        "rasterio",
+        "shapely",
+    ]
+
+After updating these two files, follow step.3 and run local test again. 
+
 6.2. Developing tests
 ~~~~~~~~~~~~~~~~~~~~~
 
