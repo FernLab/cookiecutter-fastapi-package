@@ -20,6 +20,9 @@ class Test{{ cookiecutter.project_slug|title }}:
         """Run once for the entire class to set up any state."""
         print("Setting up Test_{{ cookiecutter.project_slug|title }} class")
 
+        cls.app = TestClient(app)
+        cls.endpoint = 'test-service'
+
     @classmethod
     def teardown_class(cls):
         """Run once after all tests in the class have run."""
