@@ -285,20 +285,21 @@ Once it is built it will ask for a token. To get token, on gitlab follow steps b
 
 * Go to **Settings** > **CI/CD** > **Runners**.
 * Blow the Project runners, click on **New Project Runner**.
-  * Leave Tags empty
+  * Leave Tags empty.
   * Activate option ``Run untagged jobs``. 
   * Activate option ``Lock to current project``.
-  * Set a timeout if needed (can be left empty to use the default, can be changed later)
+  * Set a timeout if needed (can be left empty to use the default, can be changed later).
 * Click on **Create runner**.
 * Please copy the token you are getting.
-* On mefe console, paste the token and pres enter.
-* Then you will be asked for a name for the runner. It is recommended to follow this nomenclature:
+* Paste the token and press enter.
 
-``<package_name>_CI__v<package_version>__<mefe_machine>``
+Then you will be asked for a name for the runner. It is recommended to follow this nomenclature:
+
+``<project_slug>_CI__v<package_version>__<example_machine>``
 
 In this naming style:
 - ``package_version``: since it is the first runner the version is ``0.1.0``
-- ``mefe_machine``: in our example ``mefe4``
+- ``example_machine``: name for host machine where runner is running
 
 you can also add your name or a short version so people know who this runner belongs to.
 
