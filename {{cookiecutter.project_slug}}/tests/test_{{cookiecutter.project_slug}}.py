@@ -12,65 +12,6 @@ from fastapi.testclient import TestClient
 from {{ cookiecutter.project_slug }}.create_app import app
 
 
-class Test{{ cookiecutter.project_slug|title }}():
-
-    @classmethod
-    def setup_class(cls):
-        """Set up test fixtures."""
-        cls.app = TestClient(app)
-        cls.endpoint = 'test-service'
-
-    def teardown_class(self):
-        print("teardown_class called once for the class")
-
-    def setup_method(self):
-        print("setup_method called for every method")
-
-    def teardown_method(self):
-        print("teardown_method called for every method")
-
-    def test_api_home_200(self):
-        response = self.app.get(f"{self.endpoint}/")
-        assert response.status_code == 200
-
-    def test_api_home_404_url_not_found(self):
-        response = self.app.get(f"{self.endpoint}/NotFound")
-        assert response.status_code == 404
-
-    def test_api_items_200(self):
-        response = self.app.get(f"{self.endpoint}/item")
-        assert response.status_code == 200
-
-    def test_api_items_404_url_not_found(self):
-        response = self.app.get(f"{self.endpoint}/item_NotFound")
-        assert response.status_code == 404
-
-    def test_api_item_by_id_200(self):
-        response = self.app.get(f"{self.endpoint}/item/1")
-        assert response.status_code == 200
-
-    def test_api_item_by_id_404_not_found(self):
-        response = self.app.get(f"{self.endpoint}/item/5")
-        assert response.status_code == 404
-
-    def test_api_item_by_id_404_url_not_found(self):
-        response = self.app.get(f"{self.endpoint}/item_NotFound/5")
-        assert response.status_code == 404
-
-
-@pytest.fixture
-def response():
-    """
-    Sample pytest fixture.
-
-    See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
-    """
-
-def test_content():
-    """Sample pytest test function which prints the package version."""
-    assert {{ cookiecutter.project_slug }}.__version__ == "{{ cookiecutter.version }}"
-
-
 class Test{{ cookiecutter.project_slug|title }}:
     """Tests for `{{ cookiecutter.project_slug }}` package."""
 
@@ -114,6 +55,37 @@ class Test{{ cookiecutter.project_slug|title }}:
         """
         print(f"Tearing down {method.__name__}")
 
-    def test_000_something(self):
-        """Test something."""
-        print({{ cookiecutter.project_slug }}.__version__)
+    def test_api_home_200(self):
+        """Test the API endpoint [GET] / for 200_OK."""
+        response = self.app.get(f"{self.endpoint}/")
+        assert response.status_code == 200
+
+    def test_api_home_404_url_not_found(self):
+        """Test the API endpoint [GET] / for 404_NOT_FOUND."""
+        response = self.app.get(f"{self.endpoint}/NotFound")
+        assert response.status_code == 404
+
+    def test_api_items_200(self):
+        """Test the API endpoint [GET] /item for 200_OK."""
+        response = self.app.get(f"{self.endpoint}/item")
+        assert response.status_code == 200
+
+    def test_api_items_404_url_not_found(self):
+        """Test the API endpoint [GET] /item for 404_NOT_FOUND."""
+        response = self.app.get(f"{self.endpoint}/item_NotFound")
+        assert response.status_code == 404
+
+    def test_api_item_by_id_200(self):
+        """Test the API endpoint [GET] /item/{id} for 200_OK."""
+        response = self.app.get(f"{self.endpoint}/item/1")
+        assert response.status_code == 200
+
+    def test_api_item_by_id_404_not_found(self):
+        """Test the API endpoint [GET] /item/{id} for 404_NOT_FOUND."""
+        response = self.app.get(f"{self.endpoint}/item/5")
+        assert response.status_code == 404
+
+    def test_api_item_by_id_404_url_not_found(self):
+        """Test the API endpoint [GET] /item/{id} for 404_NOT_FOUND."""
+        response = self.app.get(f"{self.endpoint}/item_NotFound/5")
+        assert response.status_code == 404
