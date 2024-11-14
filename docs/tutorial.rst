@@ -105,7 +105,7 @@ which is the base environment automatically created by **mamba** during the inst
 
 More information can be found on [their github repository](https://github.com/conda-forge/miniforge).
 
-    Now you have everything you need for generating python package directory.
+    Now you have everything you need for generating **FastAPI Python Package** directory.
 
 
 2. Generate a FastAPI API directory structure
@@ -132,7 +132,7 @@ Once you cloned the repository, make sure that you are in the parent directory o
 
     cookiecutter cookiecutter-fastapi-package
 
-You are asked by multiple questions as follow
+you are asked by multiple questions as follow
 
 .. code-block:: bash
 
