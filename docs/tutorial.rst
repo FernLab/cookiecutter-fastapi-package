@@ -323,7 +323,7 @@ Go to our `Issues`_ page and create a new Issue. Be sure to give as much informa
 Developed by
 ============
 
-.. image:: https://fernlab.gfz-potsdam.de/images/Fern.Lab_weiss-quadrat.png
+.. image:: fernlab.png
   :width: 150
   :alt: FERNLab Logo
   
