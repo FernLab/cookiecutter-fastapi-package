@@ -17,12 +17,12 @@ This manual explains how to create a directory structure for a Python-FastAPI pr
 
 Furthermore, it also explains how to create a GitLab repository for that package and deploy it as a service using **Docker**.
 
-1. Install the pre-requirements.
-2. Generate a FastAPI API directory structure.
-3. Prepare Gitlab repository.
-4. Create and attach a runner to the repository.
-5. Run as a service.
-6. Appendix.
+1. Install the pre-requirements
+2. Generate a FastAPI API directory structure
+3. Testing the generated directory
+4. Prepare Gitlab repository
+4. Create and attach a runner to the repository
+5. Maintaining and extending the project
 
 **Please Note** The following instruction is for **Ubuntu 20.04**.
 
@@ -201,10 +201,10 @@ which are explained here:
 
     Note: Depending on your project choose the appropriate License. For most of the projects it is recommended option 1), the EUPL License. Could be changed later on if necessary.
 
-3. Run tests
-------------
+3. Testing the generated directory
+----------------------------------
 
-It's about testing the directory locally. The purpose of this step is to make sure if the directory was generated successfully, before pushing the codes to the GitLab repository and creating the corresponding runner.
+The purpose of this step is to make sure if the directory was generated successfully, before pushing the codes to the GitLab repository and creating the corresponding runner.
 
 To do that, the template provides some commands.
 
@@ -312,8 +312,17 @@ you can also add your name or a short version so people know who this runner bel
 
 Once you press enter, go to **Settings** > **CI/CD** > **Runners**. The runner will be listed here and you should now be able to see a pipeline running.
 
-Having trouble?
----------------
+5. Maintaining and extending the project
+----------------------------------------
+
+5.1. Adding new packages
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+5.2. Developing tests
+~~~~~~~~~~~~~~~~~~~~~
+
+5.3. Having trouble?
+~~~~~~~~~~~~~~~~~~~~
 
 Go to our `Issues`_ page and create a new Issue. Be sure to give as much information as possible.
 
