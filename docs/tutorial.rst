@@ -318,7 +318,9 @@ Once you press enter, go to **Settings** > **CI/CD** > **Runners**. The runner w
 6.1. Adding new packages
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-We use **Miniforge** to manage python packages using dedicated environment for your repository and to do that we use a YAML file format could be found under ``tests/CI_docker/context/environment_<project_slug>.yml``. When project directory was generated and you check this file, under the ``dependencies`` section you could find
+We use **Miniforge** to manage python packages using dedicated environment for your repository and to do that we use a YAML file format could be found under ``tests/CI_docker/context/environment_<project_slug>.yml``.
+
+Open up the file and under the ``dependencies`` section look for followig code
 
 .. code-block::
 
@@ -331,9 +333,11 @@ We use **Miniforge** to manage python packages using dedicated environment for y
   - rasterio
   - shapely
 
-which are the default and most common used packages for geospatial data manipulation. In case of needing new package(s) you can add them below this list. We recommend to stick to this structure and follow alphabetic order for this list that helps you to find packages easily in the future.
+which are the default and most common used packages for geospatial data manipulation.
 
-When you updated this list, open up the ``pyproject.toml`` file and look for. You need to add new package(s) also here and again, try to follow alphabetic order.
+In case of needing the new package(s) you just need to add them to this list. As a recommendation try keep the structure and follow alphabetic order for this list that helps you to find packages easily in the future.
+
+Then open up the ``pyproject.toml`` file at the root of the project and look for
 
 .. code-block::
 
@@ -345,7 +349,7 @@ When you updated this list, open up the ``pyproject.toml`` file and look for. Yo
         "shapely",
     ]
 
-After updating these two files, follow step.3 and run local test again. 
+You need to add new package(s) also here and again, try to follow alphabetic order. After updating these two files, follow step.3 and run local test again. 
 
 6.2. Developing tests
 ~~~~~~~~~~~~~~~~~~~~~
