@@ -99,7 +99,7 @@ and you will see
     
     # conda environments:
     #
-    base                  *  /home/arash/miniforge3
+    base
 
 which is the base environment automatically created by **mamba** during the installation.
 
