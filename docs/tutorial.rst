@@ -349,7 +349,19 @@ Then open up the ``pyproject.toml`` file at the root of the project and look for
         "shapely",
     ]
 
-You need to add new package(s) also here and again, try to follow alphabetic order. After updating these two files, follow step.3 and run local test again. 
+You need to add new package(s) also here and again, try to follow alphabetic order. After updating these two files, once the environment is still activated, follow these steps:
+
+.. code-block:: bash
+
+    cd <project_slug>
+    mamba env update -f tests/CI_docker/context/environment_<project_slug>.yml
+    pip install .
+    make pytest
+    make lint
+    make urlcheck
+    make docs
+
+to make sure that packages are installed correctly and there is not version incompatibility.
 
 6.2. Developing tests
 ~~~~~~~~~~~~~~~~~~~~~
